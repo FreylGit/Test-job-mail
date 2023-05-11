@@ -1,21 +1,7 @@
-﻿using Mail.ApplicationWpf.Helper;
-using Mail.ApplicationWpf.Models;
+﻿using Mail.ApplicationWpf.Models;
 using Mail.ApplicationWpf.Services;
-using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Mail.ApplicationWpf.Views
 {
@@ -24,11 +10,12 @@ namespace Mail.ApplicationWpf.Views
     /// </summary>
     public partial class LoginWindow : Window
     {
-       
+
         public event EventHandler<UserDto> UserEvent;
         public LoginWindow()
         {
             InitializeComponent();
+            TBName.Focus();
         }
 
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
@@ -57,9 +44,9 @@ namespace Mail.ApplicationWpf.Views
             {
                 MessageBox.Show("Не удалось войти");
             }
-            
-            
+
+
         }
-       
+
     }
 }

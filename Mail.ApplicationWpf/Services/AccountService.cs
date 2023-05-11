@@ -1,10 +1,8 @@
 ﻿using Mail.ApplicationWpf.Helper;
 using Mail.ApplicationWpf.Models;
-using Mail.ApplicationWpf.Views;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Text;
-using System.Windows;
 
 namespace Mail.ApplicationWpf.Services
 {
@@ -21,19 +19,10 @@ namespace Mail.ApplicationWpf.Services
             {
                 var content = response.Content.ReadAsStringAsync().Result;
                 var userResponse = JsonConvert.DeserializeObject<UserDto>(content);
-                // обработайте полученного пользователя
-                //_userApplication = userResponse;
+
                 return userResponse;
-               // UserEvent?.Invoke(this, new UserDto(userResponse));
-               // this.Close();
             }
-            else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
-            {
-                var errorMessage = response.Content.ReadAsStringAsync();
-                // обработайте сообщение об ошибке
-                //idL.Content = "Error";
-                
-            }
+
             return null;
         }
         public bool Registration(UserDto registrationUser)

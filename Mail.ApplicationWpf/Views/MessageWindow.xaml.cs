@@ -1,5 +1,4 @@
 ﻿using Mail.ApplicationWpf.ViewModels;
-using System.ComponentModel;
 using System.Windows;
 
 namespace Mail.ApplicationWpf.Views
@@ -12,14 +11,13 @@ namespace Mail.ApplicationWpf.Views
         public MessageWindow(ItemMessageViewModel model)
         {
             InitializeComponent();
-            if(model != null)
+            if (model != null)
             {
-                
                 LTitle.Content = model.Title;
                 LContent.Content = model.Content;
                 LDate.Content = model.DateTime.ToUniversalTime();
             }
         }
-       
+
     }
 }

@@ -14,6 +14,7 @@ namespace Mail.ApplicationWpf.Views
         {
             InitializeComponent();
             _emailSender = emailSender;
+            TBEmail.Focus();
         }
 
         private void BtnSend_Click(object sender, RoutedEventArgs e)

@@ -27,7 +27,6 @@ namespace Mail.ApplicationWpf
         }
         private void LoginWindow_UserEvent(object sender, UserDto user)
         {
-            // выполните действия, которые нужно выполнить при получении данных из LoginWindow
             userApplication = user;
             LEmail.Content = "Почта: " + user.Email;
             SetListMessage();
@@ -45,7 +44,6 @@ namespace Mail.ApplicationWpf
             MessageService messageService = new MessageService();
             var list = messageService.GetMessageItems(userApplication); // получаю от сервера список сообщений
 
-            // LBMessage.ItemsSource = list;
             foreach (var item in list)
             {
                 LBMessage.Items.Add(item);
@@ -78,8 +76,6 @@ namespace Mail.ApplicationWpf
             }
             var messageWindow = new MessageWindow(selectedItem);
             messageWindow.Show();
-            BtnSendMessage.Focus();
-           
         }
 
         private void BtnUpdateMessages_Click(object sender, RoutedEventArgs e)
