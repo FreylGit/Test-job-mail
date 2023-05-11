@@ -79,7 +79,7 @@ namespace Mail.ApplicationWpf
             var messageWindow = new MessageWindow(selectedItem);
             messageWindow.Show();
             BtnSendMessage.Focus();
-
+           
         }
 
         private void BtnUpdateMessages_Click(object sender, RoutedEventArgs e)

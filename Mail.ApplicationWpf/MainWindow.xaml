@@ -5,42 +5,93 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Mail.ApplicationWpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Button Name="LoginBtn" Content="Вход" HorizontalAlignment="Left" Margin="606,28,0,0" VerticalAlignment="Top" Width="40" Click="LoginBtn_Click"/>
-        <Button 
+        Title="Главная" 
+        Height="450" Width="800"
+        MinWidth="640"
+        MinHeight="480">
+    <Window.Resources>
+
+        <Style TargetType="Label">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Background" Value="#f7a923"/>
+            <Setter Property="Padding" Value="10 5"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#f7c877"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#f5b445"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+    </Window.Resources>
+
+    <Grid Background="#FFE8E5CC">
+        <StackPanel
+            Width="200"
+            Orientation="Horizontal"  
+            VerticalAlignment="Top"
+            HorizontalAlignment="Right" 
+            Margin="0,14,10,0">
+            <Button Name="LoginBtn"
+                Content="Вход" 
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top" 
+                Width="66" Click="LoginBtn_Click"
+                Height="33" 
+                Background="#FF6DFF62"/>
+            <Button 
             Name="RegistrationBtn" 
             Content="Регистрация" 
             HorizontalAlignment="Left"
-            Margin="661,28,0,0" 
-            VerticalAlignment="Top" Click="RegistrationBtn_Click"/>
+            
+            VerticalAlignment="Top"
+            Click="RegistrationBtn_Click" 
+            Width="114"
+            Height="33"
+            Background="#FF394AF8"/>
+        </StackPanel>
+
         <Label 
             Name="LEmail"
             Content="Почта: Пусто"
-            HorizontalAlignment="Left"
-            Margin="324,12,0,0"
-            VerticalAlignment="Top"/>
+            
+            VerticalAlignment="Top" Margin="0,17,0,0"
+            />
         <ListBox
              Name="LBMessage"
              Margin="0,96,0,0"
              DisplayMemberPath="Title"
-             ItemsSource="{Binding MessageDto}"
-             SelectionChanged="LBMessage_SelectionChanged" Height="NaN"
+             SelectionChanged="LBMessage_SelectionChanged"
+            Height="NaN" 
+            FontFamily="Comic Sans MS" 
+            FontSize="14"
+            Background="#FFE8E5CC"
            />
         <Button
             Name="BtnSendMessage"
             Content="Написать письмо" 
             HorizontalAlignment="Left"
-            Margin="31,28,0,0"
-            VerticalAlignment="Top" Width="103" Click="BtnSendMessage_Click"/>
-   
+            Margin="31,12,0,0"
+            VerticalAlignment="Top" Width="143" Click="BtnSendMessage_Click" Height="40"/>
+
         <Button
             Name="BtnUpdateMessages"
             Content="Обновить список"
             HorizontalAlignment="Left"
             Margin="31,62,0,0"
             VerticalAlignment="Top" 
-            Click="BtnUpdateMessages_Click"/>
+            Click="BtnUpdateMessages_Click" Width="143"/>
 
     </Grid>
 </Window>
