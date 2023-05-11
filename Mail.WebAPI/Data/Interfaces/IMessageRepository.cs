@@ -1,6 +1,6 @@
 ﻿using Mail.WebAPI.Models;
 
-namespace Mail.WebAPI.Data.Interfases
+namespace Mail.WebAPI.Data.Interfaces
 {
     public interface IMessageRepository
     {

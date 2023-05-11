@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using Mail.WebAPI.Data.Interfases;
+using Mail.WebAPI.Data.Interfaces;
 using Mail.WebAPI.DTOs;
 using Mail.WebAPI.Models;
 using Mail.WebAPI.Models.Post;
-using Mail.WebAPI.Services.Interfases;
+using Mail.WebAPI.Services.Interfaces;
 
 namespace Mail.WebAPI.Services
 {

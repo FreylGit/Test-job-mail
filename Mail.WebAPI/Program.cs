@@ -1,8 +1,8 @@
 using Mail.WebAPI.Data;
-using Mail.WebAPI.Data.Interfases;
+using Mail.WebAPI.Data.Interfaces;
 using Mail.WebAPI.Data.Repositories;
 using Mail.WebAPI.Services;
-using Mail.WebAPI.Services.Interfases;
+using Mail.WebAPI.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

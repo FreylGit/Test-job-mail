@@ -1,5 +1,5 @@
 ﻿using Mail.WebAPI.DTOs;
-using Mail.WebAPI.Services.Interfases;
+using Mail.WebAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Mail.WebAPI.Controllers

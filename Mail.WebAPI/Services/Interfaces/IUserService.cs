@@ -1,6 +1,6 @@
 ﻿using Mail.WebAPI.DTOs;
 
-namespace Mail.WebAPI.Services.Interfases
+namespace Mail.WebAPI.Services.Interfaces
 {
     public interface IUserService
     {

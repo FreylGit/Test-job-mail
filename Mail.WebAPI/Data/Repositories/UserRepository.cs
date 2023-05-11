@@ -1,4 +1,4 @@
-﻿using Mail.WebAPI.Data.Interfases;
+﻿using Mail.WebAPI.Data.Interfaces;
 using Mail.WebAPI.Models;
 using Microsoft.EntityFrameworkCore;
 

@@ -1,6 +1,5 @@
 ﻿using Mail.WebAPI.DTOs;
-using Mail.WebAPI.Models;
-using Mail.WebAPI.Services.Interfases;
+using Mail.WebAPI.Services.Interfaces;
 
 namespace Mail.WebAPI.Services
 {
@@ -13,14 +12,14 @@ namespace Mail.WebAPI.Services
         }
         public async Task<UserDto> LoginAsync(UserDto loginUser)
         {
-            if(loginUser == null)
+            if (loginUser == null)
             {
                 throw new ArgumentNullException(nameof(loginUser));
             }
             var user = await _userService.GetUserByNameAndEmail(loginUser);
-            if(user == null)
+            if (user == null)
             {
-                throw new ArgumentNullException("Пользователь не найден",nameof(user));
+                throw new ArgumentNullException("Пользователь не найден", nameof(user));
             }
             return user;
         }

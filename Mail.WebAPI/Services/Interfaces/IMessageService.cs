@@ -1,7 +1,7 @@
 ﻿using Mail.WebAPI.DTOs;
 using Mail.WebAPI.Models.Post;
 
-namespace Mail.WebAPI.Services.Interfases
+namespace Mail.WebAPI.Services.Interfaces
 {
     public interface IMessageService
     {
