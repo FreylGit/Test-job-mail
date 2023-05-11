@@ -2,6 +2,7 @@
 using Mail.WebAPI.Data.Interfases;
 using Mail.WebAPI.DTOs;
 using Mail.WebAPI.Models;
+using Mail.WebAPI.Models.Post;
 using Mail.WebAPI.Services.Interfases;
 
 namespace Mail.WebAPI.Services
@@ -18,40 +19,49 @@ namespace Mail.WebAPI.Services
             _userRepository = userRepository;
 
         }
-        public async Task CreateMessageAsync(MessageDto createMessage)
+
+
+        public async Task CreateMessageAsync(MessageView createMessage)
         {
             if (createMessage == null)
             {
                 throw new ArgumentNullException(nameof(createMessage));
             }
-            if (createMessage.AddresseeId == createMessage.SenderId)
+            if(createMessage.EmailAddressee.ToLower() == createMessage.EmailSender.ToLower())
             {
-                throw new ArgumentException("addresse id and sender id are the same");
+                throw new ArgumentException("Одинаковые email", nameof(createMessage));
             }
-            if (!await _userRepository.ExistsUserAsync(createMessage.AddresseeId))
+            var addressee = await _userRepository.GetUserByEmailAsync(createMessage.EmailAddressee);
+            if (addressee == null)
             {
-                throw new ArgumentException("addresse with this id does not exist");
+                throw new ArgumentNullException("Адресат с таким email не найден", nameof(createMessage));
             }
-            if (!await _userRepository.ExistsUserAsync(createMessage.SenderId))
+            var sender = await _userRepository.GetUserByEmailAsync(createMessage.EmailSender);
+            if (sender == null)
             {
-                throw new ArgumentException("there is no sender with this id");
+                throw new ArgumentNullException("Отправитель с таким email не найден", nameof(createMessage));
             }
-            var messageMap = _mapper.Map<Message>(createMessage);
-            if (messageMap == null)
+            var message = new Message()
             {
-                throw new ArgumentException("Failed to cast model", nameof(messageMap));
-            }
-            if (!await _messageRepository.CreateMessageAsync(messageMap))
+                Title = createMessage.Title,
+                Content = createMessage.Content,
+                DateTime = DateTime.Now,
+                AddresseeId = addressee.Id,
+                SenderId = sender.Id,
+
+            };
+            if (!await _messageRepository.CreateMessageAsync(message))
             {
-                throw new ArgumentException("Failed to save", nameof(messageMap));
+                throw new ArgumentException("Не удалось сохранить message", nameof(createMessage));
             }
+
         }
 
         public async Task DeleteMessageAsync(int id)
         {
             if (id <= 0)
             {
-                throw new ArgumentOutOfRangeException("Incorrect id");  
+                throw new ArgumentOutOfRangeException("Incorrect id");
             }
             if (!await _messageRepository.ExistsMessageAsync(id))
             {
@@ -63,7 +73,7 @@ namespace Mail.WebAPI.Services
             }
         }
 
-        public async Task<MessageDto> GetMessageByIdAsync(int id)
+        public async Task<MessageView> GetMessageByIdAsync(int id)
         {
             if (id <= 0)
             {
@@ -74,12 +84,18 @@ namespace Mail.WebAPI.Services
                 throw new ArgumentException("There is no message with this id");
             }
             var message = await _messageRepository.GetMassageByIdAsync(id);
-            var messageMap = _mapper.Map<MessageDto>(message);
-            if (messageMap == null)
+
+            var addressee = await _userRepository.GetUserByIdAsync(message.AddresseeId);
+            var sender = await _userRepository.GetUserByIdAsync(message.SenderId);
+            var messageView = new MessageView()
             {
-                throw new ArgumentNullException(nameof(messageMap));
-            }
-            return messageMap;
+                Title = message.Title,
+                Content = message.Content,
+                EmailAddressee = addressee.Email,
+                EmailSender = sender.Email
+            };
+            
+            return messageView;
 
         }
 

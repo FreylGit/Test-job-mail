@@ -6,6 +6,7 @@ namespace Mail.WebAPI.Data.Interfases
     {
         public Task<ICollection<User>> GetUsersAsync();
         public Task<User> GetUserByIdAsync(int id);
+        public Task<User> GetUserByEmailAsync(string email);
         public Task<bool> CreateUserAsync(User user);
         public Task<bool> UpdateUserAsync(User newUser);
         public Task<bool> DeleteUserByIdAsync(int id);

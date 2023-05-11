@@ -1,4 +1,5 @@
 ﻿using Mail.WebAPI.DTOs;
+using Mail.WebAPI.Models.Post;
 using Mail.WebAPI.Services.Interfases;
 using Microsoft.AspNetCore.Mvc;
 
@@ -70,7 +71,7 @@ namespace Mail.WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateMessage(MessageDto createMessage)
+        public async Task<IActionResult> CreateMessage(MessageView createMessage)
         {
             if (!ModelState.IsValid)
             {
@@ -80,8 +81,7 @@ namespace Mail.WebAPI.Controllers
             {
                 await _messageService.CreateMessageAsync(createMessage);
                 return NoContent();
-            }
-            catch (ArgumentNullException ex)
+            }catch(ArgumentNullException ex)
             {
                 return NotFound(ex.Message);
             }
@@ -90,7 +90,8 @@ namespace Mail.WebAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpDelete("{messageId}")]
+
+            [HttpDelete("{messageId}")]
         public async Task<IActionResult> DeleteMessage(int messageId)
         {
             try

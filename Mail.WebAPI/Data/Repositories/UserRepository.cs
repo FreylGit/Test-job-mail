@@ -24,7 +24,7 @@ namespace Mail.WebAPI.Data.Repositories
 
         public async Task<bool> DeleteUserByIdAsync(int id)
         {
-            var messages = _context.Messages.Where(m => m.AddresseeId == id);
+            var messages = _context.Messages.Where(m => m.AddresseeId == id || m.SenderId==id);
             _context.Messages.RemoveRange(messages);
             var user = await _context.Users.Where(u => u.Id == id).FirstOrDefaultAsync();
             _context.Users.Remove(user);
@@ -39,6 +39,12 @@ namespace Mail.WebAPI.Data.Repositories
                 return true;
             }
             return false;
+        }
+
+        public async Task<User> GetUserByEmailAsync(string email)
+        {
+            var user = await _context.Users.Where(u => u.Email == email).FirstOrDefaultAsync();
+            return user;
         }
 
         public async Task<User> GetUserByIdAsync(int id)

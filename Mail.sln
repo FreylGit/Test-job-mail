@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mail.WebAPI", "Mail.WebAPI\Mail.WebAPI.csproj", "{A13407CC-61A2-4A42-8CE8-16A26FD3C39F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mail.WebAPI", "Mail.WebAPI\Mail.WebAPI.csproj", "{A13407CC-61A2-4A42-8CE8-16A26FD3C39F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mail.ApplicationWpf", "Mail.ApplicationWpf\Mail.ApplicationWpf.csproj", "{E6A4347D-F60A-497F-9B66-AC6F69247226}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{A13407CC-61A2-4A42-8CE8-16A26FD3C39F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A13407CC-61A2-4A42-8CE8-16A26FD3C39F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A13407CC-61A2-4A42-8CE8-16A26FD3C39F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6A4347D-F60A-497F-9B66-AC6F69247226}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6A4347D-F60A-497F-9B66-AC6F69247226}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6A4347D-F60A-497F-9B66-AC6F69247226}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6A4347D-F60A-497F-9B66-AC6F69247226}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
