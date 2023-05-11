@@ -4,6 +4,7 @@ using Mail.ApplicationWpf.Views;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Text;
+using System.Windows;
 
 namespace Mail.ApplicationWpf.Services
 {
@@ -34,6 +35,20 @@ namespace Mail.ApplicationWpf.Services
                 
             }
             return null;
+        }
+        public bool Registration(UserDto registrationUser)
+        {
+            var url = MyConstants.ACCOUNT_REGISTRATION_URL;
+            var json = JsonConvert.SerializeObject(registrationUser);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+            using var client = new HttpClient();
+            var response = client.PostAsync(url, data).Result;
+            if (response.IsSuccessStatusCode)
+            {
+
+                return true;
+            }
+            return false;
         }
     }
 }

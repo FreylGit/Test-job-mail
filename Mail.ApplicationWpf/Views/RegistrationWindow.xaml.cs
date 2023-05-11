@@ -1,5 +1,6 @@
 ﻿using Mail.ApplicationWpf.Helper;
 using Mail.ApplicationWpf.Models;
+using Mail.ApplicationWpf.Services;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -43,25 +44,16 @@ namespace Mail.ApplicationWpf.Views
                 Email = email
             };
 
-            var url = MyConstants.ACCOUNT_REGISTRATION_URL;
-            var json = JsonConvert.SerializeObject(registrationUser);
-            var data = new StringContent(json, Encoding.UTF8, "application/json");
-            using var client = new HttpClient();
-            var response = client.PostAsync(url, data).Result;
-            if (response.IsSuccessStatusCode)
+            AccountService accountService = new AccountService();
+            if (accountService.Registration(registrationUser))
             {
-                
                 MessageBox.Show("Зарегистрированно");
-                //UserEvent?.Invoke(this, new UserDto(userResponse));TODO: Переписать в сервис
                 this.Close();
             }
-            else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+            else
             {
-                var errorMessage = response.Content.ReadAsStringAsync();
-                // обработайте сообщение об ошибке
-                //idL.Content = "Error";
+                MessageBox.Show("Ошибка регистрации");
             }
-
         }
     }
 }
